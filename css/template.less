@@ -65,6 +65,12 @@ html {
     .cat-meetings {
       background: #2CE3BD
     }
+    .right {
+      float: right;
+    }
+    .left {
+      float: left;
+    }
     .header {
       background: rgba(255,255,255,0.3);
       padding: 7px;
@@ -146,9 +152,9 @@ html {
               margin-right: -10px;
               button {
                 padding: 0;
-                -webkit-border-radius: 20px;
-                -moz-border-radius: 20px;
-                border-radius: 20px;
+                -webkit-border-radius: 22px;
+                -moz-border-radius: 22px;
+                border-radius: 22px;
                 margin: 0 5px;
                 i {
                   padding: 10px;
@@ -249,22 +255,34 @@ html {
           display: inline-block;
           height: 100%;
           position: absolute;
-          button {
-            height: 15px;
-            width: 15px;
+          input[type=checkbox] {
+            display: none;
+          }
+          input[type=checkbox]:checked ~ i {
+            display: block;
+          }
+          label {
+            height: 17px;
+            width: 17px;
             border: 2px solid rgba(255,255,255,0.3);
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            border-radius: 10px;
+            -webkit-border-radius: 12px;
+            -moz-border-radius: 12px;
+            border-radius: 12px;
             position: absolute;
-            top: 47%;
-            left: 30%;
-            i {
-              font-size: 18px;
-              margin-left: -7px;
-              margin-top: -3px;
-              color: white;
-            }
+            top: 45%;
+            left: 21%;
+            z-index: 1;
+            cursor: pointer;
+          }
+          i {
+            font-size: 21px;
+            color: white;
+            display: none;
+            top: 44.5%;
+            left: 26%;
+            position: absolute;
+            z-index: 0;
+            cursor: pointer;
           }
         }
         .task-block {
@@ -304,14 +322,19 @@ html {
         }
       }
       .tasks {
-        -moz-column-count: 2;
-        -moz-column-gap: 0;
-        -webkit-column-count: 2;
-        -webkit-column-gap: 0;
-        column-count: 2;
-        column-gap: 0;
-        position: absolute;
-        margin-left: 75px;
+        width: 332px;
+        overflow: hidden;
+        &:last-of-type {
+          width: 333px;
+          .col {
+            width: 350px;
+          }
+        }
+        .col {
+          overflow-y: scroll;
+          height: 496px;
+          width: 349px;
+        }
         .half-width {
           &.task {
             margin-left: 0;
@@ -322,9 +345,6 @@ html {
               -moz-opacity: 0.5;
               -khtml-opacity: 0.5;
               opacity: 0.5;
-              button {
-                border: none;
-              }
             }
           }
           .task-block {
