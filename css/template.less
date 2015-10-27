@@ -167,7 +167,7 @@ html {
           width: auto;
           position: relative;
           &.dark {
-            background: rgb(74, 79, 98);
+            background: rgba(65, 72, 90, 0.95);
             .options {
               button {
                 background: transparent;
@@ -175,7 +175,7 @@ html {
             }
           }
           &.light {
-            background: rgb(82,89,108);
+            background: rgba(82,89,108,0.95);
             &:after {
               content: '';
               width: 0;
@@ -368,7 +368,7 @@ html {
       .task-details {
         height: 690px;
         width: 390px;
-        background: #52596c;
+        background: rgba(65, 72, 90, 0.95);
         position: absolute;
         right: 0;
         top: 0;
@@ -409,7 +409,17 @@ html {
           .option {
             border-bottom: 1px solid rgba(255,255,255,0.1);
             padding: 10px;
+            position: relative;
+            &.active {
+              background: #4F5668;
+              button {
+                color: white;
+              }
+            }
             button {
+              &:hover {
+                color: white;
+              }
               color: rgba(255,255,255,0.6);
             }
             i {
@@ -418,6 +428,96 @@ html {
               vertical-align: sub;
             }
           }
+        }
+      }
+    }
+  }
+}
+.calendar {
+  background: white;
+  width: 220px;
+  height: 165px;
+  position: absolute;
+  top: -52px;
+  left: -220px;
+  &:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7px 0px 7px 7px;
+    border-color: transparent transparent transparent #fff;
+    position: absolute;
+    right: -7px;
+    top: 70px;
+  }
+  .calendar-header {
+    background: #ECEFF6;
+    text-align: center;
+    padding: 5px;
+    button {
+      color: #A6AAB7 !important;
+      font-weight: bold;
+      i {
+        padding: 0 !important;
+      }
+    }
+    .week-day {
+      margin-top: 10px;
+      color: #8C8F9A;
+    }
+  }
+  .calendar-body {
+    padding: 5px;
+    button {
+      color: black !important;
+      &.prev-next-month {
+        color: #8C8F9A !important;
+      }
+    }
+  }
+  .calendar-grid {
+    font-size: 0;
+    button {
+      font-weight: normal;
+      font-size: 10px;
+      padding: 3px;
+      width: 30px;
+      position: relative;
+      z-index: 1;
+      @-moz-document url-prefix() {
+        button {
+          padding: 1px !important;
+        }
+      }
+      &.current-date {
+        &:before {
+          background: #a6aab7;
+          -webkit-border-radius: 20px;
+          -moz-border-radius: 20px;
+          border-radius: 20px;
+          content: '';
+          width: 17px;
+          height: 17px;
+          position: absolute;
+          z-index: -1;
+          left: 7px;
+          top: 1px;
+        }
+      }
+      &.task-date {
+        &:before {
+          border: 1px red solid;
+          -webkit-border-radius: 20px;
+          -moz-border-radius: 20px;
+          border-radius: 20px;
+          content: '';
+          width: 17px;
+          height: 17px;
+          position: absolute;
+          z-index: -1;
+          left: 6px;
+          top: -1px;
         }
       }
     }
