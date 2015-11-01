@@ -7,26 +7,25 @@ html {
   height: 100%;
   body {
     .wrapper {
-      height: 750px;
+      height: 585px;
+      width: 604px;
       position: absolute;
-      margin: 50px 0;
+      top: 50%;
+      left: 50%;
+      margin-top: -292px; /* Half the height */
+      margin-left: -302px; /* Half the width */
     }
-    width: 750px;
+    width: 605px;
     height: 100%;
     font-family: 'open_sans';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
     button {
       background: none;
       outline: none;
       border: none;
       cursor: pointer;
+      font-family: 'open_sans';
     }
     .padding-0 {
       padding: 0;
@@ -77,16 +76,34 @@ html {
     .color-meetings {
       color: #2CE3BD !important;
     }
+    .overflowed {
+      height: 500px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 70px;
+      right: -20px;
+      overflow: auto;
+    }
+    .overflowed-hidden {
+      height: 500px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 70px;
+      right: -3px;
+      overflow: hidden;
+    }
     .marker-block {
       background: #4A4F62;
-      width: 35px;
+      width: 45px;
       display: inline-block;
       height: 100%;
       position: absolute;
       input[type=checkbox] {
         display: none;
       }
-      input[type=checkbox]:checked ~ i {
+      input[type=checkbox]:checked + label i {
         display: block;
       }
       label {
@@ -98,27 +115,28 @@ html {
         border-radius: 12px;
         position: absolute;
         top: 45%;
-        left: 21%;
+        left: 28%;
         z-index: 1;
         cursor: pointer;
       }
       i {
-        font-size: 21px;
+        font-size: 22px;
         color: white;
         display: none;
-        top: 44.5%;
-        left: 26%;
-        position: absolute;
-        z-index: 0;
         cursor: pointer;
+        margin-top: -3px;
+        margin-left: -1px;
       }
     }
     .header {
       background: rgba(255,255,255,0.3);
       padding: 7px;
       position: relative;
+      height: 70px;
       .row {
+        width: auto;
         &:first-of-type {
+          margin: 15px 15px 0 15px;
           button {
             height: 12px;
             width: 12px;
@@ -127,19 +145,35 @@ html {
             -moz-border-radius: 10px;
             border-radius: 10px;
             vertical-align: top;
+            &:hover {
+              background: rgba(255,255,255,1);
+            }
           }
         }
         &:nth-of-type(2) {
+          margin: 0 15px 15px 15px;
           h4 {
             color: white;
             text-align: center;
+            font-size: 18px;
           }
           .controls {
-            margin-top: -20px;
+            margin-top: -25px;
+            button {
+              &:first-of-type {
+                margin-right: 10px;
+              }
+              padding: 0;
+              &:hover {
+                > i {
+                  color: rgba(255,255,255,1);
+                }
+              }
+            }
             i {
               color: rgba(255,255,255,0.6);
               padding: 0 5px;
-              font-size: 20px;
+              font-size: 24px;
               cursor: pointer;
             }
           }
@@ -147,10 +181,10 @@ html {
       }
       .add-task {
         position: absolute;
-        z-index: 1;
-        width: 100%;
-        bottom: -152px;
-        left: 0;
+        z-index: 2;
+        bottom: -227px;
+        left: -15px;
+        width: 634px;
         .row {
           .options {
             button {
@@ -163,11 +197,12 @@ html {
               }
             }
           }
-          padding: 20px;
+          padding: 35px 20px;
           width: auto;
           position: relative;
           &.dark {
             background: rgba(65, 72, 90, 0.95);
+            min-height: 40px;
             .options {
               button {
                 background: transparent;
@@ -195,6 +230,11 @@ html {
                 -moz-border-radius: 22px;
                 border-radius: 22px;
                 margin: 0 5px;
+                &.active, &:hover {
+                  i {
+                    color: white;
+                  }
+                }
                 i {
                   padding: 10px;
                 }
@@ -207,6 +247,8 @@ html {
             display: inline;
             padding: 0;
             margin: 0;
+            font-weight: 100;
+            outline: none;
           }
           h4 {
             color: rgba(255,255,255,0.6);
@@ -214,23 +256,25 @@ html {
             display: inline;
             padding: 0;
             margin: 0;
+            font-weight: 100;
           }
         }
       }
       .search {
         position: absolute;
         z-index: 1;
-        width: 100%;
-        bottom: -66px;
-        left: 0;
+        width: 634px;
+        bottom: -108px;
+        left: -15px;
         .row {
-          padding: 20px;
+          padding: 35px 20px;
           width: auto;
           position: relative;
-          background: rgb(74, 79, 98);
+          background: rgba(65, 72, 90, 0.95);
           i {
             color: rgba(255,255,255,0.6);
-            font-size: 24px;
+            font-size: 36px;
+            font-weight: 100;
           }
           input {
             background: none;
@@ -248,19 +292,33 @@ html {
       }
     }
     .main-part {
-      height: 689px;
-      overflow: hidden;
+      height: 500px;
       position: relative;
+      overflow: hidden;
       .nav-cats {
-        width: 75px;
+        width: 70px;
         background: rgba(82,89,108,0.5);
         height: 100%;
         button {
           text-align: center;
-          width: 75px;
-          height: 75px;
+          width: 70px;
+          height: 70px;
           position: relative;
-          &.active, &:hover {
+          &:hover {
+            background: #4A4F62;
+            &:after {
+              content: '';
+              width: 0;
+              height: 0;
+              border-top: 10px solid transparent;
+              border-bottom: 10px solid transparent;
+              border-right:10px solid #4A4F62;
+              position: absolute;
+              right: 0;
+              top: 37%;
+            }
+          }
+          &.active {
             background: #52596C;
             &:after {
               content: '';
@@ -276,7 +334,7 @@ html {
           }
           i {
             color: white;
-            font-size: 40px;
+            font-size: 26px;
           }
           &.settings {
             position: absolute;
@@ -286,8 +344,32 @@ html {
         }
       }
       .task {
+        &.cat-archive {
+          &:after {
+            background: #4E74DA !important;
+          }
+        }
+        &.cat-home {
+          &:after {
+            background: #FE6D6A !important;
+          }
+        }
+        &.cat-work {
+          &:after {
+            background: #FFC777 !important;
+          }
+        }
+        &.cat-pc {
+          &:after {
+            background: #CC94EF !important;
+          }
+        }
+        &.cat-meetings {
+          &:after {
+            background: #2CE3BD !important;
+          }
+        }
         background: #52596C;
-        margin-left: 75px;
         font-size: 0;
         position: relative;
         .task-block {
@@ -297,39 +379,58 @@ html {
           .row {
             font-size: 0;
             span {
-              color: rgba(255,255,255,0.6);
-              font-size: 20px;
+              &.separator {
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 20px;
+                font-weight: 100;
+                padding: 0 5px;
+              }
             }
-            button {
+            span {
+              font-size: 12px;
               color: rgba(255,255,255,0.6);
               i {
+                padding-right: 10px;
                 font-size: 20px;
               }
             }
+            button {
+              i {
+                font-size: 20px;
+                color: rgba(255,255,255,0.6);
+              }
+            }
           }
-          p {
+          .task-text-button {
             margin: 20px 0 0 0;
             padding: 0;
+            font-size: 46px;
+            font-weight: 100;
+            font-style: normal;
+            text-align: left;
+            color: white;
           }
         }
-        .color-block {
+        &:after {
           width: 10px;
           display: inline-block;
           position: absolute;
           height: 100%;
           right: 0;
+          content: "";
         }
         &.full-width {
-          border-bottom: 2px solid rgba(255,255,255,0.1);
+          width: 534px;
+          border-bottom: 1px solid rgba(255,255,255,0.1);
           .task-block {
             font-size: 36px;
-            width: 580px;
+            width: 449px;
           }
         }
       }
       .tasks {
         width: 332px;
-        overflow: hidden;
+
         margin-top: -1px;
         &:last-of-type {
           width: 333px;
@@ -338,37 +439,14 @@ html {
           }
         }
         .col {
-          overflow-y: scroll;
           height: 496px;
           width: 349px;
         }
-        .half-width {
-          &.task {
-            margin-left: 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            margin-top: -1px;
-            &.finished {
-              -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-              filter: alpha(opacity=50);
-              -moz-opacity: 0.5;
-              -khtml-opacity: 0.5;
-              opacity: 0.5;
-            }
-          }
-          .task-block {
-            font-size: 24px;
-            padding: 15px 15px 15px 60px;
-            .date {
-              font-size: 12px;
-              color: rgba(255,255,255,0.6);
-            }
-          }
-        }
       }
       .task-details {
-        height: 690px;
-        width: 390px;
-        background: rgba(65, 72, 90, 0.95);
+        height: 500px;
+        width: 313px;
+        background: rgba(65,72,90,0.95);
         position: absolute;
         right: 0;
         top: 0;
@@ -381,9 +459,36 @@ html {
           right: 10px;
           z-index: 1;
         }
-        .task-category-line {
+        &.cat-archive {
+          &:before {
+            background: #4E74DA !important;
+          }
+        }
+        &.cat-home {
+          &:before {
+            background: #FE6D6A !important;
+          }
+        }
+        &.cat-work {
+          &:before {
+            background: #FFC777 !important;
+          }
+        }
+        &.cat-pc {
+          &:before {
+            background: #CC94EF !important;
+          }
+        }
+        &.cat-meetings {
+          &:before {
+            background: #2CE3BD !important;
+          }
+        }
+        &:before {
           width: 100%;
           height: 10px;
+          content: "";
+          position: absolute;
         }
         .details-header {
           border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -400,27 +505,29 @@ html {
           }
           p {
             margin: 0;
-            padding: 20px 55px;
-            font-size: 28px;
+            padding: 30px 55px 20px 55px;
+            font-size: 26px;
             color: white;
           }
         }
         .task-options {
           .option {
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding: 10px;
             position: relative;
             &.active {
               background: #4F5668;
-              button {
+              button.option-button {
                 color: white;
               }
             }
-            button {
+            button.option-button {
               &:hover {
                 color: white;
               }
               color: rgba(255,255,255,0.6);
+              padding: 10px !important;
+              width: 100%;
+              text-align: left;
             }
             i {
               font-size: 24px;
@@ -433,13 +540,54 @@ html {
     }
   }
 }
+.all-tasks {
+  font-size: 0;
+}
+.half-width {
+  width: 267px;
+  display: inline-block;
+  vertical-align: text-top;
+  position: relative;
+  &:after {
+    content: "";
+  }
+  .task {
+    margin-left: 0 !important;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: -1px;
+    &.done {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+      filter: alpha(opacity=50);
+      -moz-opacity: 0.5;
+      -khtml-opacity: 0.5;
+      opacity: 0.5;
+      label i {
+        display: block;
+      }
+    }
+  }
+  .task-block {
+    padding: 15px 15px 15px 60px !important;
+    button {
+      font-size: 24px;
+      text-align: left;
+      color: white;
+      padding: 15px 0 0 0;
+    }
+    .date {
+      font-size: 12px !important;
+      font-weight: bold;
+      color: rgba(255,255,255,0.6);
+    }
+  }
+}
 .calendar {
   background: white;
-  width: 220px;
-  height: 165px;
+  width: 225px;
+  height: 193px;
   position: absolute;
-  top: -52px;
-  left: -220px;
+  top: -75px;
+  left: -225px;
   &:before {
     content: '';
     width: 0;
@@ -449,26 +597,36 @@ html {
     border-color: transparent transparent transparent #fff;
     position: absolute;
     right: -7px;
-    top: 70px;
+    top: 92px;
   }
   .calendar-header {
     background: #ECEFF6;
     text-align: center;
-    padding: 5px;
+    padding: 10px 5px 5px 5px;
+    .calenar-month {
+      color: #414659;
+      font-size: 18px;
+    }
     button {
       color: #A6AAB7 !important;
       font-weight: bold;
+      width: auto !important;
+      padding: 0 4px !important;
+      &.calendar-arrow:first-of-type {
+        padding: 0 10px 0 5px !important;
+      }
       i {
         padding: 0 !important;
       }
     }
     .week-day {
       margin-top: 10px;
-      color: #8C8F9A;
+      margin-bottom: 5px;
+      color: #a6aab7!important;
     }
   }
   .calendar-body {
-    padding: 5px;
+    padding: 12px;
     button {
       color: black !important;
       &.prev-next-month {
@@ -478,21 +636,18 @@ html {
   }
   .calendar-grid {
     font-size: 0;
+    text-align: center !important;
     button {
-      font-weight: normal;
+      font-weight: bold;
       font-size: 10px;
-      padding: 3px;
-      width: 30px;
+      padding: 3px !important;
+      width: 28px !important;
       position: relative;
       z-index: 1;
-      @-moz-document url-prefix() {
-        button {
-          padding: 1px !important;
-        }
-      }
+      text-align: center !important;
       &.current-date {
         &:before {
-          background: #a6aab7;
+          background: #dcdfe4;
           -webkit-border-radius: 20px;
           -moz-border-radius: 20px;
           border-radius: 20px;
@@ -501,7 +656,7 @@ html {
           height: 17px;
           position: absolute;
           z-index: -1;
-          left: 7px;
+          left: 6px;
           top: 1px;
         }
       }
@@ -516,12 +671,39 @@ html {
           height: 17px;
           position: absolute;
           z-index: -1;
-          left: 6px;
-          top: -1px;
+          left: 5px;
+          top: 0px;
         }
       }
     }
   }
 }
-
+.new-task-option-button {
+  &:hover {
+    i {
+      color: white !important;
+    }
+  }
+}
+.task-details {
+  &:after {
+    content: "";
+    position: absolute;
+    width: 533px;
+    left: -224px;
+    top: 0px;
+    z-index: -1;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+  }
+}
+@-moz-document url-prefix() {
+  .calendar-grid {
+    &.calendar-body {
+      button {
+        padding: 1px !important;
+      }
+    }
+  }
+}
 

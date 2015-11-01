@@ -1,70 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="fonts/fonts.css"/>
-        <link rel="stylesheet" type="text/css" href="css/template.css"/>
-        <link rel="stylesheet" type="text/css" href="libs/font-awesome-4.4.0/css/font-awesome.min.css">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Task manager</title>
-    </head>
-    <body>
-        <div class="wrapper">
-            <header class="header">
-                <div class="row">
-                    <button></button>
-                    <button></button>
-                    <button></button>
+<head>
+    <link rel="stylesheet" type="text/css" href="fonts/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="css/template.css"/>
+    <link rel="stylesheet" type="text/css" href="libs/font-awesome-4.4.0/css/font-awesome.min.css">
+
+    <!--[if IE 9]>
+    <link rel="stylesheet" type="text/css" href="css/ie.css"/>
+    <![endif]-->
+
+    <script src="libs/placeholder/placeholders.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Task manager</title>
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <div class="row">
+            <button class="app-control"></button>
+            <button class="app-control"></button>
+            <button class="app-control"></button>
+        </div>
+        <div class="row clear">
+            <h4 class="padding-0 margin-0">All tasks</h4>
+
+            <div class="controls pull-right">
+                <button>
+                    <i class="fa fa-search"></i>
+                </button>
+                <button>
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="add-task">
+            <div class="row dark">
+                <h3 contenteditable="true">
+                    Add new task
+                </h3>
+
+                <div class="options pull-right">
+                    <button class="new-task-option-button">
+                        <i class="fa fa-star-o"></i>
+                    </button>
+                    <button class="new-task-option-button">
+                        <i class="fa fa-calendar"></i>
+                    </button>
+                    <button class="new-task-option-button">
+                        <i class="fa fa-circle color-home"></i>
+                    </button>
                 </div>
-                <div class="row clear">
-                    <h4 class="padding-0 margin-0">All tasks</h4>
-                    <div class="controls pull-right">
-                        <i class="fa fa-search"></i>
-                        <i class="fa fa-plus"></i>
-                    </div>
-                </div>
-                <div class="add-task">
-                    <div class="row dark">
-                        <h3>
-                            Add new task
-                        </h3>
-                        <div class="options pull-right">
-                            <button>
-                                <i class="fa fa-star-o"></i>
-                            </button>
-                            <button>
-                                <i class="fa fa-calendar"></i>
-                            </button>
-                            <button>
-                                <i class="fa fa-circle color-home"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row light">
-                        <h4>
-                            Select a category
-                        </h4>
-                        <div class="options pull-right">
-                            <button class="active cat-archive">
-                                <i class="fa fa-archive"></i>
-                            </button>
-                            <button class="cat-home">
-                                <i class="fa fa-home"></i>
-                            </button>
-                            <button class="cat-work">
-                                <i class="fa fa-briefcase"></i>
-                            </button>
-                            <button class="cat-pc">
-                                <i class="fa fa-desktop"></i>
-                            </button>
-                            <button class="cat-meetings">
-                                <i class="fa fa-users"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            <section class="main-part">
-                <nav class="nav-cats pull-left">
+            </div>
+            <div class="row light">
+                <h4>
+                    Select a category
+                </h4>
+
+                <div class="options pull-right">
                     <button class="active cat-archive">
                         <i class="fa fa-archive"></i>
                     </button>
@@ -80,167 +73,173 @@
                     <button class="cat-meetings">
                         <i class="fa fa-users"></i>
                     </button>
-                    <button class="settings">
-                        <i class="fa fa-cog"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="main-part">
+        <nav class="nav-cats pull-left">
+            <button class="active cat-archive">
+                <i class="fa fa-archive"></i>
+            </button>
+            <button class="cat-home">
+                <i class="fa fa-home"></i>
+            </button>
+            <button class="cat-work">
+                <i class="fa fa-briefcase"></i>
+            </button>
+            <button class="cat-pc">
+                <i class="fa fa-desktop"></i>
+            </button>
+            <button class="cat-meetings">
+                <i class="fa fa-users"></i>
+            </button>
+            <button class="settings">
+                <i class="fa fa-cog"></i>
+            </button>
+        </nav>
+        <div class="all-tasks overflowed">
+            <div class="full-width task cat-home">
+                <div class="marker-block">
+                    <input id="check0" type="checkbox">
+                    <label for="check0">
+                        <i class="fa fa-check-circle"></i>
+                    </label>
+                </div>
+                <div class="task-block">
+                    <div class="row">
+                        <span><i class="fa fa-map-marker"></i></span>
+                        <span>At Tesco</span>
+                        <span class="separator">|</span>
+                        <span>Next monday</span>
+                        <button class="pull-right"><i class="fa fa-star"></i></button>
+                    </div>
+                    <button class="task-text-button">
+                        Lorem ipsum dolor sit amet, mea id omittam suscipit.
                     </button>
-                </nav>
-                <div class="full-width task">
+                </div>
+            </div>
+            <div class="half-width column-left">
+                <div class="task cat-meetings">
                     <div class="marker-block">
-                        <button></button>
+                        <input id="check1" type="checkbox">
+                        <label for="check1">
+                            <i class="fa fa-check-circle"></i>
+                        </label>
                     </div>
                     <div class="task-block">
-                        <div class="row">
-                            <button>
-                                <i class="fa fa-map-marker"></i>
-                            </button>
-                            <button>All Tesco</button>
-                            <span>|</span>
-                            <button>Next monday</button>
-                            <button class="pull-right"><i class="fa fa-star"></i></button>
+                        <div class="row date">
+                            19.11.2015
                         </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, mea id omittam suscipit.
-                        </p>
-                    </div>
-                    <div class="color-block cat-home"></div>
-                </div>
-                <div class="tasks left">
-                    <div class="col left">
-                        <div class="half-width task">
-                            <div class="marker-block">
-                                <input id="check1" type="checkbox">
-                                <label for="check1"></label>
-                                <i class="fa fa-check-circle"></i>
-                            </div>
-                            <div class="task-block">
-                                <div class="row date">
-                                    19.11.2015
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet. Dlor sit in eos assum.
-                                </p>
-                            </div>
-                            <div class="color-block cat-meetings"></div>
-                        </div>
-                        <div class="half-width task">
-                            <div class="marker-block">
-                                <input id="check2" type="checkbox">
-                                <label for="check2"></label>
-                                <i class="fa fa-check-circle"></i>
-                            </div>
-                            <div class="task-block">
-                                <div class="row date">
-                                    22.12.2015
-                                </div>
-                                <p>
-                                    His ex regione pericula elaboraret. In eos assum suavitate.
-                                </p>
-                            </div>
-                            <div class="color-block cat-work"></div>
-                        </div>
-                        <div class="half-width task">
-                            <div class="marker-block">
-                                <input id="check3" type="checkbox">
-                                <label for="check3"></label>
-                                <i class="fa fa-check-circle"></i>
-                            </div>
-                            <div class="task-block">
-                                <div class="row date">
-                                    17.10.2015
-                                </div>
-                                <p>
-                                    Mea id omittam suscipit, dolor sit amet.
-                                </p>
-                            </div>
-                            <div class="color-block cat-pc"></div>
-                        </div>
-                        <div class="half-width task">
-                            <div class="marker-block">
-                                <input id="check4" type="checkbox">
-                                <label for="check4"></label>
-                                <i class="fa fa-check-circle"></i>
-                            </div>
-                            <div class="task-block">
-                                <div class="row date">
-                                    17.10.2015
-                                </div>
-                                <p>
-                                    Mea id omittam suscipit, dolor sit amet.
-                                </p>
-                            </div>
-                            <div class="color-block cat-work"></div>
-                        </div>
+                        <button>
+                            Lorem ipsum dolor sit amet. Dlor sit in eos assum.
+                        </button>
                     </div>
                 </div>
-                <div class="tasks left">
-                    <div class="col left">
-                        <div class="half-width task">
-                            <div class="marker-block">
-                                <input id="check5" type="checkbox">
-                                <label for="check5"></label>
-                                <i class="fa fa-check-circle"></i>
-                            </div>
-                            <div class="task-block">
-                                <div class="row date">
-                                    17.10.2015
-                                </div>
-                                <p>
-                                    His ex regione.
-                                </p>
-                            </div>
-                            <div class="color-block cat-home"></div>
+                <div class="task cat-home">
+                    <div class="marker-block">
+                        <input id="check2" type="checkbox">
+                        <label for="check2">
+                            <i class="fa fa-check-circle"></i>
+                        </label>
+                    </div>
+                    <div class="task-block">
+                        <div class="row date">
+                            Tomorrow
                         </div>
-                        <div class="half-width task finished">
-                            <div class="marker-block">
-                                <input id="check6" type="checkbox">
-                                <label for="check6"></label>
-                                <i class="fa fa-check-circle"></i>
-                            </div>
-                            <div class="task-block">
-                                <div class="row date">
-                                    17.10.2015
-                                </div>
-                                <p>
-                                    Mea id omittam suscipit, dolor sit amet. His ex regione pericula elaboraret.
-                                </p>
-                            </div>
-                            <div class="color-block cat-pc"></div>
-                        </div>
-                        <div class="half-width task finished">
-                            <div class="marker-block">
-                                <input id="check7" type="checkbox">
-                                <label for="check7"></label>
-                                <i class="fa fa-check-circle"></i>
-                            </div>
-                            <div class="task-block">
-                                <div class="row date">
-                                    17.10.2015
-                                </div>
-                                <p>
-                                    Mea id omittam suscipit, dolor sit amet.
-                                </p>
-                            </div>
-                            <div class="color-block cat-work"></div>
-                        </div>
-                        <div class="half-width task finished">
-                            <div class="marker-block">
-                                <input id="check8" type="checkbox">
-                                <label for="check8"></label>
-                                <i class="fa fa-check-circle"></i>
-                            </div>
-                            <div class="task-block">
-                                <div class="row date">
-                                    17.10.2015
-                                </div>
-                                <p>
-                                    His ex regione.
-                                </p>
-                            </div>
-                            <div class="color-block cat-home"></div>
-                        </div>
+                        <button>
+                            Clean my room.
+                        </button>
                     </div>
                 </div>
-            </section>
+                <div class="task cat-archive">
+                    <div class="marker-block">
+                        <input id="check3" type="checkbox">
+                        <label for="check3">
+                            <i class="fa fa-check-circle"></i>
+                        </label>
+                    </div>
+                    <div class="task-block">
+                        <div class="row date">
+                            17.10.2015
+                        </div>
+                        <button>
+                            Mea id omittam suscipit, dolor sit amet.
+                        </button>
+                    </div>
+                </div>
+                <div class="task cat-pc done">
+                    <div class="marker-block">
+                        <input id="check4" type="checkbox">
+                        <label for="check4">
+                            <i class="fa fa-check-circle"></i>
+                        </label>
+                    </div>
+                    <div class="task-block">
+                        <div class="row date">
+                            22.12.2015
+                        </div>
+                        <button>
+                            Mea id omittam suscipit, dolor sit amet.
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="half-width column-right">
+                <div class="task cat-archive">
+                    <div class="marker-block">
+                        <input id="check5" type="checkbox">
+                        <label for="check5">
+                            <i class="fa fa-check-circle"></i>
+                        </label>
+                    </div>
+                    <div class="task-block">
+                        <div class="row date">
+                            17.10.2015
+                        </div>
+                        <button>
+                            Mea id omittam suscipit, dolor sit amet.
+                        </button>
+                    </div>
+                </div>
+                <div class="task cat-pc done">
+                    <div class="marker-block">
+                        <input id="check6" type="checkbox">
+                        <label for="check6">
+                            <i class="fa fa-check-circle"></i>
+                        </label>
+                    </div>
+                    <div class="task-block done">
+                        <div class="row date">
+                            17.10.2015
+                        </div>
+                        <button>
+                            Mea id omittam suscipit, dolor sit amet.
+                        </button>
+                    </div>
+                </div>
+                <div class="task cat-work done">
+                    <div class="marker-block">
+                        <input id="check7" type="checkbox">
+                        <label for="check7">
+                            <i class="fa fa-check-circle"></i>
+                        </label>
+                    </div>
+                    <div class="task-block">
+                        <div class="row date">
+                            17.10.2015
+                        </div>
+                        <button>
+                            Mea id omittam suscipit, dolor sit amet.
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </body>
+    </section>
+</div>
+<script>
+    inputPlaceholder(document.getElementById('search'))
+</script>
+</body>
 </html>
