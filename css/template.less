@@ -1,3 +1,9 @@
+@import "header";
+@import "search";
+@import "task";
+@import "calendar";
+
+
 html {
   background: url(../images/background.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -17,18 +23,6 @@ html {
       border: none;
       cursor: pointer;
       font-family: 'open_sans';
-    }
-    .padding-0 {
-      padding: 0;
-    }
-    .margin-0 {
-      margin: 0;
-    }
-    .pull-right {
-      float: right;
-    }
-    .pull-left {
-      float: left;
     }
     .clear:before,.clear:after {
       content: " ";
@@ -62,10 +56,10 @@ html {
       float: left;
     }
     .color-home {
-      color: #FE6D6A !important;
+      color: #FE6D6A;
     }
     .color-meetings {
-      color: #2CE3BD !important;
+      color: #2CE3BD;
     }
     .overflowed-hidden {
       height: 500px;
@@ -73,184 +67,37 @@ html {
       top: 0;
       bottom: 0;
       left: 70px;
-      right: -3px;
       overflow: hidden;
     }
-  }
-}
-.header {
-  background: rgba(255,255,255,0.3);
-  padding: 7px;
-  position: relative;
-  height: 70px;
-  .row {
-    width: auto;
-    &:first-of-type {
-      margin: 15px 15px 0 15px;
-    }
-    &:nth-of-type(2) {
-      margin: 0 15px 15px 15px;
-      h4 {
-        color: white;
-        text-align: center;
-        font-size: 18px;
-      }
-    }
-  }
-  .add-task {
-    position: absolute;
-    z-index: 2;
-    bottom: -227px;
-    left: -15px;
-    width: 634px;
-    .row {
-      .options {
-        button {
-          width: auto;
-          height: auto;
-          i {
-            color: rgba(255,255,255,0.6);
-            font-size: 20px;
-            padding-top: 12px;
-          }
-        }
-      }
-      padding: 35px 20px;
-      width: auto;
-      position: relative;
-      h3 {
-        color: rgba(255,255,255,0.6);
-        font-size: 30px;
-        display: inline;
-        padding: 0;
-        margin: 0;
-        font-weight: 100;
-        outline: none;
-      }
-      h4 {
-        color: rgba(255,255,255,0.6);
-        font-size: 24px;
-        display: inline;
-        padding: 0;
-        margin: 0;
-        font-weight: 100;
-      }
-    }
-  }
-  .search {
-    position: absolute;
-    z-index: 1;
-    width: 634px;
-    bottom: -108px;
-    left: -15px;
-    .row {
-      padding: 35px 20px;
-      width: auto;
-      position: relative;
-      background: rgba(65, 72, 90, 0.95);
-      i {
-        color: rgba(255,255,255,0.6);
-        font-size: 36px;
-        font-weight: 100;
-      }
-      input {
-        background: none;
-        outline: none;
-        border: none;
-        color: white;
-        margin-left: 10px;
-        font-size: 20px;
-        font-family: 'open_sans';
-      }
-      label {
-        cursor: pointer;
-      }
-    }
-  }
-}
-.add-new-task {
-  background: rgba(65, 72, 90, 0.95);
-  min-height: 40px;
-  .options {
-    float: right;
-    button {
-      background: transparent;
-    }
-  }
-}
-.select-category {
-  background: rgba(82,89,108,0.95);
-  &:after {
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #52596C;
-    position: absolute;
-    top: -10px;
-    right: 25px;
-  }
-  .options {
-    float: right;
-    margin-right: -10px;
-    button {
-      padding: 0;
-      -webkit-border-radius: 22px;
-      -moz-border-radius: 22px;
-      border-radius: 22px;
-      margin: 0 5px;
-      &.active, &:hover {
-        i {
-          color: white;
-        }
-      }
-      i {
-        padding: 10px;
-      }
-    }
-  }
-}
-.app-control {
-  height: 12px;
-  width: 12px;
-  background: rgba(255,255,255,0.3);
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  vertical-align: top;
-  &:hover {
-    background: rgba(255,255,255,1);
   }
 }
 .main-part {
   height: 500px;
   position: relative;
-  overflow: hidden;
   .task {
     &.cat-archive {
       &:after {
-        background: #4E74DA !important;
+        background: #4E74DA;
       }
     }
     &.cat-home {
       &:after {
-        background: #FE6D6A !important;
+        background: #FE6D6A;
       }
     }
     &.cat-work {
       &:after {
-        background: #FFC777 !important;
+        background: #FFC777;
       }
     }
     &.cat-pc {
       &:after {
-        background: #CC94EF !important;
+        background: #CC94EF;
       }
     }
     &.cat-meetings {
       &:after {
-        background: #2CE3BD !important;
+        background: #2CE3BD;
       }
     }
     background: #52596C;
@@ -265,11 +112,9 @@ html {
       content: "";
     }
     &.full-width {
-      width: 534px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
       .task-block {
         font-size: 36px;
-        width: 449px;
       }
     }
   }
@@ -290,7 +135,7 @@ html {
   }
   .task-details {
     height: 500px;
-    width: 313px;
+    width: 57%;
     background: rgba(65,72,90,0.95);
     position: absolute;
     right: 0;
@@ -306,27 +151,27 @@ html {
     }
     &.cat-archive {
       &:before {
-        background: #4E74DA !important;
+        background: #4E74DA;
       }
     }
     &.cat-home {
       &:before {
-        background: #FE6D6A !important;
+        background: #FE6D6A;
       }
     }
     &.cat-work {
       &:before {
-        background: #FFC777 !important;
+        background: #FFC777;
       }
     }
     &.cat-pc {
       &:before {
-        background: #CC94EF !important;
+        background: #CC94EF;
       }
     }
     &.cat-meetings {
       &:before {
-        background: #2CE3BD !important;
+        background: #2CE3BD;
       }
     }
     &:before {
@@ -335,26 +180,26 @@ html {
       content: "";
       position: absolute;
     }
-    .details-header {
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      position: relative;
-      .marker-block {
-        background: none;
-        width: 50px;
-        label {
-          left: 35%;
-        }
-        i {
-          left: 38%;
-        }
-      }
-      p {
-        margin: 0;
-        padding: 30px 55px 20px 55px;
-        font-size: 26px;
-        color: white;
-      }
+  }
+}
+.details-header {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+  .marker-block {
+    background: none;
+    width: 50px;
+    label {
+      left: 50%;
     }
+    i {
+      left: 38%;
+    }
+  }
+  p {
+    margin: 0;
+    padding: 30px 55px 20px 55px;
+    font-size: 26px;
+    color: white;
   }
 }
 .marker-block {
@@ -377,10 +222,12 @@ html {
     -moz-border-radius: 12px;
     border-radius: 12px;
     position: absolute;
-    top: 45%;
-    left: 28%;
+    top: 50%;
+    left: 50%;
     z-index: 1;
     cursor: pointer;
+    margin-top: -10px;
+    margin-left: -10px;
   }
   i {
     font-size: 22px;
@@ -416,7 +263,8 @@ html {
         border-right:10px solid #4A4F62;
         position: absolute;
         right: 0;
-        top: 37%;
+        top: 50%;
+        margin-top: -10px;
       }
     }
     i {
@@ -430,45 +278,6 @@ html {
     }
   }
 }
-.task-block {
-  color: white;
-  display: inline-block;
-  padding: 25px 25px 25px 60px;
-  .row {
-    font-size: 0;
-    span {
-      &.separator {
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 20px;
-        font-weight: 100;
-        padding: 0 5px;
-      }
-    }
-    span {
-      font-size: 12px;
-      color: rgba(255,255,255,0.6);
-      i {
-        padding-right: 10px;
-        font-size: 20px;
-      }
-    }
-    button {
-      i {
-        font-size: 20px;
-        color: rgba(255,255,255,0.6);
-      }
-    }
-  }
-  .task-text-button {
-    margin: 20px 0 0 0;
-    padding: 0;
-    font-size: 46px;
-    font-weight: 100;
-    font-style: normal;
-    text-align: left;
-    color: white;
-  }
-}
 .wrapper {
   height: 585px;
   width: 604px;
@@ -478,35 +287,6 @@ html {
   margin-top: -292px; /* Half the height */
   margin-left: -302px; /* Half the width */
 }
-.task-options {
-  .option {
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    position: relative;
-    &.active {
-      background: #4F5668;
-    }
-    i {
-      font-size: 24px;
-      padding-right: 15px;
-      vertical-align: sub;
-    }
-  }
-}
-.option-button.active {
-  color: white;
-}
-.option-button {
-  &:hover {
-    color: white;
-  }
-  color: rgba(255,255,255,0.6);
-  padding: 10px !important;
-  width: 100%;
-  text-align: left;
-}
-.task-block button {
-  float: right;
-}
 .all-tasks {
   font-size: 0;
   background: #52596C;
@@ -515,11 +295,10 @@ html {
   top: 0;
   bottom: 0;
   left: 70px;
-  right: -20px;
   overflow: auto;
 }
 .half-width {
-  width: 267px;
+  width: 50%;
   display: inline-block;
   vertical-align: text-top;
   position: relative;
@@ -527,12 +306,12 @@ html {
     content: "";
   }
   .task {
-    margin-left: 0 !important;
+    margin-left: 0;
     border-top: 1px solid rgba(255,255,255,0.1);
     margin-top: -1px;
   }
   .task-block {
-    padding: 15px 15px 15px 60px !important;
+    padding: 15px 15px 15px 60px;
     button {
       font-size: 24px;
       text-align: left;
@@ -540,169 +319,9 @@ html {
       padding: 15px 0 0 0;
     }
     .date {
-      font-size: 12px !important;
+      font-size: 12px;
       font-weight: bold;
       color: rgba(255,255,255,0.6);
     }
-  }
-}
-.done {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-  filter: alpha(opacity=50);
-  -moz-opacity: 0.5;
-  -khtml-opacity: 0.5;
-  opacity: 0.5;
-  label i {
-    display: block;
-  }
-}
-.calendar {
-  background: white;
-  width: 225px;
-  height: 193px;
-  position: absolute;
-  top: -75px;
-  left: -225px;
-  &:before {
-    content: '';
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 7px 0px 7px 7px;
-    border-color: transparent transparent transparent #fff;
-    position: absolute;
-    right: -7px;
-    top: 92px;
-  }
-  .calendar-header {
-    background: #ECEFF6;
-    text-align: center;
-    padding: 10px 5px 5px 5px;
-    .calenar-month {
-      color: #414659;
-      font-size: 18px;
-    }
-    button {
-      color: #A6AAB7 !important;
-      font-weight: bold;
-      width: auto !important;
-      padding: 0 4px !important;
-      &.calendar-arrow:first-of-type {
-        padding: 0 10px 0 5px !important;
-      }
-      i {
-        padding: 0 !important;
-      }
-    }
-    .week-day {
-      margin-top: 10px;
-      margin-bottom: 5px;
-      color: #a6aab7!important;
-    }
-  }
-  .calendar-body {
-    padding: 12px;
-    button {
-      color: black !important;
-      &.prev-next-month {
-        color: #8C8F9A !important;
-      }
-    }
-  }
-}
-.calendar-grid {
-  font-size: 0;
-  text-align: center !important;
-  button {
-    font-weight: bold;
-    font-size: 10px;
-    padding: 3px !important;
-    width: 28px !important;
-    position: relative;
-    z-index: 1;
-    text-align: center !important;
-    &.current-date {
-      &:before {
-        background: #dcdfe4;
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
-        border-radius: 20px;
-        content: '';
-        width: 17px;
-        height: 17px;
-        position: absolute;
-        z-index: -1;
-        left: 6px;
-        top: 1px;
-      }
-    }
-    &.task-date {
-      &:before {
-        border: 1px red solid;
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
-        border-radius: 20px;
-        content: '';
-        width: 17px;
-        height: 17px;
-        position: absolute;
-        z-index: -1;
-        left: 5px;
-        top: 0px;
-      }
-    }
-  }
-}
-.new-task-option-button {
-  &:hover {
-    i {
-      color: white !important;
-    }
-  }
-}
-.task-details {
-  &:after {
-    content: "";
-    position: absolute;
-    width: 533px;
-    left: -224px;
-    top: 0px;
-    z-index: -1;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-  }
-}
-@-moz-document url-prefix() {
-  .calendar-grid {
-    &.calendar-body {
-      button {
-        padding: 1px !important;
-      }
-    }
-  }
-}
-.window-name {
-  margin: 0px;
-  padding: 0px;
-}
-.controls {
-  margin-top: -25px;
-  float: right;
-  button {
-    &:first-of-type {
-      margin-right: 10px;
-    }
-    padding: 0;
-    &:hover {
-      > i {
-        color: rgba(255,255,255,1);
-      }
-    }
-  }
-  i {
-    color: rgba(255,255,255,0.6);
-    padding: 0 5px;
-    font-size: 24px;
-    cursor: pointer;
   }
 }

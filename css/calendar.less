@@ -1,0 +1,110 @@
+/*** Calendar block ***/
+@-moz-document url-prefix() {
+  .calendar-grid {
+    &.week-day, &.calendar-body {
+      button {
+        padding: 1px !important;
+      }
+    }
+  }
+}
+.calendar {
+  background: white;
+  width: 225px;
+  position: absolute;
+  top: -75px;
+  left: -225px;
+  &:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7px 0px 7px 7px;
+    border-color: transparent transparent transparent #fff;
+    position: absolute;
+    right: -7px;
+    top: 92px;
+  }
+  .calendar-header {
+    background: #ECEFF6;
+    text-align: center;
+    padding: 10px 5px 5px 5px;
+    .calenar-month {
+      color: #414659;
+      font-size: 18px;
+    }
+    button {
+      color: #A6AAB7;
+      font-weight: bold;
+      width: auto;
+      padding: 0 4px;
+      &.calendar-arrow:first-of-type {
+        padding: 0 10px 0 5px;
+      }
+      i {
+        padding: 0;
+      }
+    }
+    .week-day {
+      margin-top: 10px;
+      margin-bottom: 5px;
+      color: #a6aab7;
+    }
+  }
+  .calendar-body {
+    padding: 12px;
+    button {
+      color: black;
+      &.prev-next-month {
+        color: #8C8F9A;
+      }
+    }
+  }
+}
+  /*** Calendar grid ***/
+  .calendar-grid {
+    font-size: 0;
+    text-align: center;
+    button {
+      font-weight: bold;
+      font-size: 10px;
+      padding: 3px;
+      width: 28px;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      &.current-date {
+        &:before {
+          background: #dcdfe4;
+          -webkit-border-radius: 20px;
+          -moz-border-radius: 20px;
+          border-radius: 20px;
+          content: '';
+          width: 17px;
+          height: 17px;
+          position: absolute;
+          z-index: -1;
+          left: 6px;
+          top: 1px;
+        }
+      }
+      &.task-date {
+        &:before {
+          border: 1px red solid;
+          -webkit-border-radius: 20px;
+          -moz-border-radius: 20px;
+          border-radius: 20px;
+          content: '';
+          width: 17px;
+          height: 17px;
+          position: absolute;
+          z-index: -1;
+          left: 5px;
+          top: 0px;
+        }
+      }
+    }
+  }
+  /*********************/
+
+/****************/
