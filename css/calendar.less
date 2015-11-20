@@ -23,7 +23,7 @@
     border-color: transparent transparent transparent #fff;
     position: absolute;
     right: -7px;
-    top: 92px;
+    top: 50%;
   }
   .calendar-header {
     background: #ECEFF6;
@@ -58,6 +58,9 @@
       &.prev-next-month {
         color: #8C8F9A;
       }
+    }
+    button:nth-of-type(7n+7) {
+      clear: both;
     }
   }
 }
