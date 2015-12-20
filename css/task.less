@@ -2,9 +2,63 @@
 .add-task {
   position: absolute;
   z-index: 2;
-  bottom: -219px;
+  bottom: 15px;
   left: -15px;
   width: 634px;
+  height: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  &.active {
+    height: 242px;
+    bottom: -227px;
+  }
+  .add-new-task {
+    .new-task-category-marker {
+      display: inline-block;
+      padding: 0 3px;
+      i {
+        font-size: 20px;
+        color: rgb(255,255,255);
+      }
+      i {
+        &.cat-home  {
+          color: #FE6D6A !important;
+          background: transparent;
+        }
+      }
+      i {
+        &.cat-work {
+          color: #FFC777 !important;
+          background: transparent;
+        }
+      }
+      i {
+        &.cat-pc {
+          color: #CC94EF !important;
+          background: transparent;
+        }
+      }
+      i {
+        &.cat-meetings {
+          color: #2CE3BD !important;
+          background: transparent;
+        }
+      }
+    }
+  }
+  #addTaskFavourite {
+    &.active {
+      i {
+        &:before {
+          content: '\f005';
+          color: white;
+        }
+      }
+    }
+  }
   .row {
     padding: 35px 20px;
     width: auto;
@@ -51,7 +105,7 @@
 .task-block {
   color: white;
   display: inline-block;
-  padding: 25px 25px 25px 60px;
+  padding: 15px 15px 15px 60px;
   .row {
     font-size: 0;
     span {
@@ -76,7 +130,7 @@
     }
   }
   .task-text-button {
-    margin: 20px 0 0 0;
+    margin: 15px 0 0 0;
     padding: 0;
     font-size: 46px;
     font-weight: 100;
@@ -100,9 +154,32 @@
 }
 .new-task-option-button {
   font-size: 20px;
+  position: relative;
+  padding: 0 3px;
+  &.new-date {
+    &.active {
+      i {
+        color: white;
+      }
+    }
+    .jq-calendar {
+      position: absolute;
+      font-size: 10px;
+      z-index: 1;
+      top: 32px;
+      padding-top: 8px;
+      right: 0;
+      display: none;
+    }
+    &:hover {
+      .jq-calendar {
+        display: block;
+      }
+    }
+  }
   &:hover {
     i {
-      color: white;
+      color: white !important;
     }
   }
 }
@@ -146,7 +223,7 @@
     border-bottom: 10px solid #52596C;
     position: absolute;
     top: -10px;
-    right: 25px;
+    right: 55px;
   }
   .options {
     float: right;

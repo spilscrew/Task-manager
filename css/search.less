@@ -2,8 +2,18 @@
   position: absolute;
   z-index: 1;
   width: 634px;
-  bottom: -108px;
+  bottom: 15px;
   left: -15px;
+  height: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  &.active {
+    height: 123px;
+    bottom: -108px;
+  }
   .row {
     padding: 35px 20px;
     width: auto;

@@ -17,12 +17,26 @@ html {
     font-family: 'open_sans';
     margin: 0;
     padding: 0;
+    .ui-datepicker-trigger {
+      color: transparent;
+      position: absolute;
+      top: 35px;
+      left: 4px;
+      height: 0 !important;
+    }
     button {
       background: none;
       outline: none;
       border: none;
       cursor: pointer;
       font-family: 'open_sans';
+    }
+    .button-search,.button-add-task {
+      &.active {
+        i {
+          color: white;
+        }
+      }
     }
     .clear:before,.clear:after {
       content: " ";
@@ -74,6 +88,7 @@ html {
 .main-part {
   height: 500px;
   position: relative;
+  overflow: hidden;
   .task {
     &.cat-archive {
       &:after {
@@ -113,8 +128,42 @@ html {
     }
     &.full-width {
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      width: 50%;
+      display: inline-block;
+      &:first-of-type {
+        width: 100%;
+        .task-text-button {
+          font-size: 36px;
+          line-height: 42px;
+        }
+        .task-block {
+          width: 450px;
+        }
+      }
+      .task-text-button {
+        font-size: 20px;
+        width: 100%;
+        line-height: 30px;
+      }
       .task-block {
         font-size: 36px;
+        width: 182px;
+        .favourite {
+          float: right;
+          padding: 0
+        }
+        i {
+          &.active {
+            &:before {
+              content: "\f005";
+            }
+          }
+          &.unactive {
+            &:before {
+              content: "\f006";
+            }
+          }
+        }
       }
     }
   }
@@ -291,11 +340,14 @@ html {
   font-size: 0;
   background: #52596C;
   height: 500px;
+  width: 551px;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 70px;
   overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
 }
 .half-width {
   width: 50%;
@@ -317,6 +369,24 @@ html {
       text-align: left;
       color: white;
       padding: 15px 0 0 0;
+      &.favourite {
+        position: absolute;
+        right: 20px;
+        top: 7px;
+        padding: 0
+      }
+      i {
+        &.active {
+          &:before {
+            content: "\f005";
+          }
+        }
+        &.unactive {
+          &:before {
+            content: "\f006";
+          }
+        }
+      }
     }
     .date {
       font-size: 12px;

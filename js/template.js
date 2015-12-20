@@ -1,13 +1,63 @@
 /* Activate sections */
 
-var acttivateSections = {
-    buttonClick: window.onclick = function(element) {
-        var getClass = element.srcElement.className;
-        if (getClass == "fa") {
-            console.log(getClass);
+var activateSections = {
+    currentActive: "",
+    stateWrite: "",
+    stateCheck: function (checkingClasses,curAct) {
+        this.currentActive = curAct;
+        for (var e = 0; e < checkingClasses.length; e++) {
+            var checkingFlag = false;
+            var classes = checkingClasses[e].classList;
+            for (var y = 0; y < classes.length; y++) {
+                if (classes[y] == "active") {
+                    console.log("has active");
+                    checkingFlag = true;
+                    break;
+                }
+            }
+            if (checkingFlag == false) {
+                this.stateWrite = "active";
+            }
         }
+    },
+    buttonClick: function (that) {
+        var getId = that.getAttribute("id");
+        that.classList.toggle('active');
+        activateSections.blocksAnimations(getId);
 
     },
-    init: function () {}
+    blocksAnimations: function (setId) {
+        if (setId == "search") {
+            document.querySelector('.search').classList.toggle('active');
+        }
+        if (setId == "addTask") {
+            document.querySelector('.add-task').classList.toggle('active');
+        }
+    },
+    init: function () {
+        var buttonsArray = document.getElementsByClassName("actSec");
+        for (var i = 0; i < buttonsArray.length; i++) {
+            buttonsArray[i].onclick = function () {
+                var that = this;
+                if (activateSections.stateWrite != "active") {
+                    activateSections.stateCheck(buttonsArray,this);
+                    activateSections.buttonClick(this);
+                } else {
+                    if (this == activateSections.currentActive) {
+                        activateSections.buttonClick(this);
+                        activateSections.stateWrite = "";
+                        activateSections.currentActive = "";
+                    } else {
+                        activateSections.buttonClick(activateSections.currentActive);
+                        setTimeout (function () {
+                            activateSections.buttonClick(that);
+                            activateSections.stateWrite = "active";
+                            activateSections.currentActive = that;
+                        }, 300)
+                    }
+                }
+            }
+        }
+    }
 }
-acttivateSections.init();
+activateSections.init();
