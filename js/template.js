@@ -31,7 +31,15 @@ var activateSections = {
             document.querySelector('.search').classList.toggle('active');
         }
         if (setId == "addTask") {
-            document.querySelector('.add-task').classList.toggle('active');
+            var addTaskButton = document.querySelector('.add-task');
+            addTaskButton.classList.toggle('active');
+            //if (addTaskButton.classList.contains("active")) {
+            //    setTimeout (function () {
+            //        document.querySelector('.add-task').style.overflow = "visible";
+            //    }, 300);
+            //} else {
+            //    document.querySelector('.add-task').style.overflow = "hidden";
+            //}
         }
     },
     init: function () {
@@ -53,7 +61,8 @@ var activateSections = {
                             activateSections.buttonClick(that);
                             activateSections.stateWrite = "active";
                             activateSections.currentActive = that;
-                        }, 300)
+                        }, 100);
+
                     }
                 }
             }

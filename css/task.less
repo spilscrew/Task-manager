@@ -6,6 +6,7 @@
   left: -15px;
   width: 634px;
   height: 0;
+  min-height: 0;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -13,6 +14,7 @@
   overflow: hidden;
   &.active {
     height: 242px;
+    min-height: 242px;
     bottom: -227px;
   }
   .add-new-task {
@@ -76,15 +78,75 @@
     }
   }
 }
+#newDate {
+  &.active {
+    i {
+      &.error {
+        color: white;
+      }
+    }
+  }
+  i {
+    &.error {
+      color: #DE0000;
+    }
+  }
+}
 .add-new-task {
   h3 {
     color: rgba(255,255,255,0.6);
     font-size: 30px;
-    display: inline;
+    display: inline-block;
     padding: 0;
     margin: 0;
     font-weight: 100;
     outline: none;
+    width: 450px;
+    max-width: 450px;
+  }
+  .new-task-name {
+    color: rgba(255,255,255,0.6);
+    font-size: 30px;
+    display: inline-block;
+    padding: 0;
+    font-weight: 100;
+    outline: none;
+    width: 440px;
+    max-width: 440px;
+    background: 0;
+    margin-top: 3px;
+    border: none;
+    font-family: 'open_sans';
+    &::-webkit-input-placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+    &:-moz-placeholder {
+      color: rgba(255,255,255,0.6);
+      opacity: 1;
+    }
+    &::-moz-placeholder {
+      color: rgba(255,255,255,0.6);
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+    &.error {
+      &::-webkit-input-placeholder {
+        color: #DE0000;
+      }
+      &:-moz-placeholder {
+        color: #DE0000;
+        opacity: 1;
+      }
+      &::-moz-placeholder {
+        color: #DE0000;
+        opacity: 1;
+      }
+      &:-ms-input-placeholder {
+        color: #DE0000;
+      }
+    }
   }
 }
 .select-category {
@@ -95,6 +157,9 @@
     padding: 0;
     margin: 0;
     font-weight: 100;
+    &.error {
+      color: #DE0000;
+    }
   }
 }
 .task-block button {
