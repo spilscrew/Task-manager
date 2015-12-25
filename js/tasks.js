@@ -9,13 +9,15 @@ $(".jq-calendar").datepicker({
 
 var toDoList = {
     writeRecord: {
+        id: "",
         title: "",
         category: "",
         date: "",
         favourite: "unactive",
-        addToStorage: function () {
+        addToStorage: function (category) {
             localStorage.setItem("task"+localStorage.length, JSON.stringify(toDoList.writeRecord));
-            toDoList.taskDisplaying(true);
+            toDoList.taskDisplaying(true,category);
+            toDoList.writeRecord.id = "";
             toDoList.writeRecord.title = "";
             toDoList.writeRecord.category = "";
             toDoList.writeRecord.date = "";
@@ -23,6 +25,9 @@ var toDoList = {
         }
     },
     addTaskRecord: {
+        setId: function () {
+            toDoList.writeRecord.id = "taskId" + localStorage.length++;
+        },
         selectTitle: function () {
             var newTaskTitle = document.querySelector(".new-task-name");
             toDoList.writeRecord.title = "";
@@ -78,8 +83,6 @@ var toDoList = {
         } else {
             checkStatus1 = true;
         }
-
-        console.log();
         if (!record.category) {
             checkStatus2 = false;
             document.querySelector(".select-category h4").classList.add("error");
@@ -108,7 +111,7 @@ var toDoList = {
             document.querySelector("#newDate").classList.remove("active");
             document.querySelector("#addTaskFavourite").classList.remove("active");
 
-            toDoList.writeRecord.addToStorage();
+            toDoList.writeRecord.addToStorage(record.category);
         }
     },
     addTaskButtonClick: document.getElementById("addTaskButton").onclick = function () {
@@ -119,51 +122,88 @@ var toDoList = {
         toDoList.checkFields();
         //var localStorageObj = localStorage.getItem("task12");
         //localStorageObj = JSON.parse(localStorageObj);
-        //console.log(localStorageObj);
     },
-    taskDisplaying: function (clear) {
+    categoryFilter: function () {
+        var catFilterArray = document.getElementsByClassName("cat-button");
+        for (var i = 0; i < catFilterArray.length; i++) {
+            catFilterArray[i].onclick = function () {
+                var catFilterArray = document.getElementsByClassName("cat-button");
+                for (var u = 0; u < catFilterArray.length; u++){
+                    catFilterArray[u].classList.remove("active");
+                }
+                this.classList.add("active");
+                var currentCategory = this.getAttribute("id");
+                toDoList.taskDisplaying(true,currentCategory);
+            }
+        }
+    },
+    taskDisplaying: function (clear,category) {
         var tasksTable = document.getElementById("tasksTable");
+
         if (clear == true) {
             tasksTable.innerHTML = "";
         }
         for (var q = 0; q < localStorage.length; q++) {
             var localStorageObj = localStorage.getItem(localStorage.key(q));
             localStorageObj = JSON.parse(localStorageObj);
-            console.log(localStorageObj);
-            console.log(localStorageObj.title);
-            tasksTable.insertAdjacentHTML('afterbegin', '' +
-                '<div class="task full-width '+ localStorageObj.category +'">' +
-                '<div class="marker-block">' +
-                '<input id="check0" type="checkbox"> ' +
-                '<label for="check0"> ' +
-                '<i class="fa fa-check-circle"></i> ' +
-                '</label> ' +
-                '</div> ' +
-                '<div class="task-block"> ' +
-                '<div class="row"> ' +
-                '<span><i class="fa fa-map-marker"></i></span> ' +
-                //'<span>At Tesco</span> ' +
-                // '<span class="separator">|</span> ' +
-                '<span>'+ localStorageObj.date +'</span> ' +
-                '<button class="favourite"><i class="fa fa-star ' + localStorageObj.favourite + '"></i></button> ' +
-                '</div> ' +
-                '<button class="task-text-button">' +
-                localStorageObj.title +
-                '</button> ' +
-                '</div> ' +
-                '</div>'
-            );
+            if (category == "" || category == "archive") {
+                toDoList.displayActivate(localStorageObj);
+
+                catFilterArray = document.getElementsByClassName("cat-button");
+                for (var u = 0; u < catFilterArray.length; u++){
+                    catFilterArray[u].classList.remove("active");
+                }
+                var categoryButtonClassSwitch = document.getElementById("archive");
+                categoryButtonClassSwitch.classList.add("active");
+
+            }
+            if (localStorageObj.category == category) {
+                toDoList.displayActivate(localStorageObj);
+
+                var catFilterArray = document.getElementsByClassName("cat-button");
+                for (var u = 0; u < catFilterArray.length; u++){
+                    catFilterArray[u].classList.remove("active");
+                }
+                categoryButtonClassSwitch = document.getElementById(category);
+                categoryButtonClassSwitch.classList.add("active");
+
+            }
         }
     },
+    displayActivate: function (item) {
+        tasksTable.insertAdjacentHTML('afterbegin', '' +
+            '<div id="' + item.id + '" class="task full-width ' + item.category + '">' +
+            '<div class="marker-block">' +
+            '<input id="check0" type="checkbox"> ' +
+            '<label for="check0"> ' +
+            '<i class="fa fa-check-circle"></i> ' +
+            '</label> ' +
+            '</div> ' +
+            '<div class="task-block"> ' +
+            '<div class="row"> ' +
+            '<span><i class="fa fa-map-marker"></i></span> ' +
+                //'<span>At Tesco</span> ' +
+                // '<span class="separator">|</span> ' +
+            '<span>' + item.date + '</span> ' +
+            '<button class="favourite"><i class="fa fa-star ' + item.favourite + '"></i></button> ' +
+            '</div> ' +
+            '<button class="task-text-button">' +
+            item.title +
+            '</button> ' +
+            '</div> ' +
+            '</div>'
+        );
+    },
     init: function () {
+        this.addTaskRecord.setId();
         this.addTaskRecord.selectCategory();
         this.addTaskRecord.selectFavourite();
-        this.taskDisplaying();
+        this.taskDisplaying(true,"");
+        this.categoryFilter();
     }
 }
 toDoList.init();
 
 document.getElementById("clearStorage").onclick = function () {
     localStorage.clear();
-    console.log(localStorage);
 }

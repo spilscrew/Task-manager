@@ -24,7 +24,6 @@ var activateSections = {
         var getId = that.getAttribute("id");
         that.classList.toggle('active');
         activateSections.blocksAnimations(getId);
-
     },
     blocksAnimations: function (setId) {
         if (setId == "search") {
