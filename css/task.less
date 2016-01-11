@@ -13,9 +13,9 @@
   transition: all 0.3s ease-in-out;
   overflow: hidden;
   &.active {
-    height: 242px;
-    min-height: 242px;
-    bottom: -227px;
+    height: 255px;
+    min-height: 255px;
+    bottom: -240px;
   }
   .add-new-task {
     .new-task-category-marker {
@@ -266,8 +266,22 @@
   color: white;
 }
 .option-button {
+  .jq-calendar-edit {
+    position: absolute;
+    font-size: 10px;
+    z-index: 1;
+    top: -7px;
+    padding-top: 8px;
+    left: -176px;
+    right: 0;
+    display: none;
+  }
   &:hover {
     color: white;
+    .jq-calendar-edit {
+      display: block;
+      width: 175px;
+    }
   }
   color: rgba(255,255,255,0.6);
   padding: 10px 10px 10px 15px;

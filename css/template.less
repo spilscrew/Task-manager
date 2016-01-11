@@ -24,6 +24,18 @@ html {
       left: 4px;
       height: 0 !important;
     }
+    .empty-text {
+      text-align: center;
+      width: 534px;
+      height: 100%;
+      span {
+        font-size: 50px;
+        color: white;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 170px;
+      }
+    }
     button {
       background: none;
       outline: none;
@@ -75,6 +87,30 @@ html {
     .color-meetings {
       color: #2CE3BD;
     }
+    i {
+      &.cat-home  {
+        color: #FE6D6A !important;
+        background: transparent;
+      }
+    }
+    i {
+      &.cat-work {
+        color: #FFC777 !important;
+        background: transparent;
+      }
+    }
+    i {
+      &.cat-pc {
+        color: #CC94EF !important;
+        background: transparent;
+      }
+    }
+    i {
+      &.cat-meetings {
+        color: #2CE3BD !important;
+        background: transparent;
+      }
+    }
     .overflowed-hidden {
       height: 500px;
       position: absolute;
@@ -90,6 +126,15 @@ html {
   position: relative;
   overflow: hidden;
   .task {
+    &.checked {
+      .task-block {
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
+        -khtml-opacity: 0.5;
+        opacity: 0.5;
+      }
+    }
     &.cat-archive {
       &:after {
         background: #4E74DA;
@@ -187,9 +232,16 @@ html {
     width: 57%;
     background: rgba(65,72,90,0.95);
     position: absolute;
-    right: 0;
+    right: -345px;
     top: 0;
     z-index: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    &.active {
+      right: 0;
+    }
     .fav {
       color: rgba(255,255,255,0.6);
       font-size: 20px;
@@ -197,6 +249,13 @@ html {
       top: 35px;
       right: 10px;
       z-index: 1;
+      &.unactive {
+        i {
+          &:before {
+            content: "\f006";
+          }
+        }
+      }
     }
     &.cat-archive {
       &:before {
@@ -249,6 +308,18 @@ html {
     padding: 30px 55px 20px 55px;
     font-size: 26px;
     color: white;
+    outline: none;
+    border: none;
+  }
+}
+.details-header {
+  input[type=checkbox]:checked + label i {
+    display: block;
+    cursor: pointer !important;
+  }
+  label {
+    cursor: pointer !important;
+    margin-top: -5px !important;
   }
 }
 .marker-block {
@@ -262,6 +333,7 @@ html {
   }
   input[type=checkbox]:checked + label i {
     display: block;
+    cursor: default;
   }
   label {
     height: 17px;
@@ -274,9 +346,9 @@ html {
     top: 50%;
     left: 50%;
     z-index: 1;
-    cursor: pointer;
     margin-top: -10px;
     margin-left: -10px;
+    cursor: default;
   }
   i {
     font-size: 22px;

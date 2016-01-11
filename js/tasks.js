@@ -14,16 +14,24 @@ var toDoList = {
         category: "",
         date: "",
         favourite: "unactive",
+        finished: "",
         addToStorage: function (category) {
-            localStorage.setItem("task"+localStorage.length, JSON.stringify(toDoList.writeRecord));
-            toDoList.taskDisplaying(true,category);
+            localStorage.setItem("taskId"+localStorage.length, JSON.stringify(toDoList.writeRecord));
+            toDoList.taskDisplaying(true,category,"edit");
             toDoList.writeRecord.id = "";
             toDoList.writeRecord.title = "";
             toDoList.writeRecord.category = "";
             toDoList.writeRecord.date = "";
             toDoList.writeRecord.favourite = "unactive";
+            toDoList.writeRecord.finished = "";
         }
     },
+    //doneTask: function (doneTaskId) {
+    //    var doneTask = localStorage.getItem(localStorage.key(doneTaskId));
+    //    doneTask = JSON.parse(doneTask);
+    //    doneTask.finished = true;
+    //    console.log(doneTask);
+    //},
     addTaskRecord: {
         setId: function () {
             toDoList.writeRecord.id = "taskId" + localStorage.length++;
@@ -115,6 +123,7 @@ var toDoList = {
         }
     },
     addTaskButtonClick: document.getElementById("addTaskButton").onclick = function () {
+        toDoList.addTaskRecord.setId();
         toDoList.addTaskRecord.selectTitle();
         toDoList.addTaskRecord.selectCategory();
         toDoList.addTaskRecord.selectDate();
@@ -134,12 +143,12 @@ var toDoList = {
                 this.classList.add("active");
                 var currentCategory = this.getAttribute("id");
                 toDoList.taskDisplaying(true,currentCategory);
+                editTask.init();
             }
         }
     },
-    taskDisplaying: function (clear,category) {
+    taskDisplaying: function (clear,category,edit) {
         var tasksTable = document.getElementById("tasksTable");
-
         if (clear == true) {
             tasksTable.innerHTML = "";
         }
@@ -148,34 +157,39 @@ var toDoList = {
             localStorageObj = JSON.parse(localStorageObj);
             if (category == "" || category == "archive") {
                 toDoList.displayActivate(localStorageObj);
-
                 catFilterArray = document.getElementsByClassName("cat-button");
-                for (var u = 0; u < catFilterArray.length; u++){
+                for (var u = 0; u < catFilterArray.length; u++) {
                     catFilterArray[u].classList.remove("active");
                 }
                 var categoryButtonClassSwitch = document.getElementById("archive");
                 categoryButtonClassSwitch.classList.add("active");
-
+                if (edit == "edit") {
+                    editTask.init();
+                }
             }
             if (localStorageObj.category == category) {
                 toDoList.displayActivate(localStorageObj);
-
                 var catFilterArray = document.getElementsByClassName("cat-button");
-                for (var u = 0; u < catFilterArray.length; u++){
+                for (var u = 0; u < catFilterArray.length; u++) {
                     catFilterArray[u].classList.remove("active");
                 }
                 categoryButtonClassSwitch = document.getElementById(category);
                 categoryButtonClassSwitch.classList.add("active");
-
+                if (edit == "edit") {
+                    editTask.init();
+                }
             }
+        }
+        if (document.getElementById("tasksTable").innerHTML === "") {
+            document.getElementById("tasksTable").innerHTML = "<div class='empty-text'><span>THIS CATEGORY<BR>IS EMPTY</span></div>";
         }
     },
     displayActivate: function (item) {
-        tasksTable.insertAdjacentHTML('afterbegin', '' +
-            '<div id="' + item.id + '" class="task full-width ' + item.category + '">' +
+        tasksTable.insertAdjacentHTML((item.finished == "")? 'afterbegin':'beforeend', '' +
+            '<div id="' + item.id + '" class="task full-width ' + item.category + ' ' + item.finished + '">' +
             '<div class="marker-block">' +
-            '<input id="check0" type="checkbox"> ' +
-            '<label for="check0"> ' +
+            '<input id="' + item.id + 'Check" type="checkbox" ' + item.finished + '> ' +
+            '<label onclick="return false" class="done-label" for="' + item.id + 'Check"> ' +
             '<i class="fa fa-check-circle"></i> ' +
             '</label> ' +
             '</div> ' +
