@@ -28,6 +28,11 @@ html {
       text-align: center;
       width: 534px;
       height: 100%;
+      &.search-text {
+        span {
+          margin-top: 190px;
+        }
+      }
       span {
         font-size: 50px;
         color: white;
@@ -127,6 +132,10 @@ html {
   overflow: hidden;
   .task {
     &.checked {
+      background: #4A4F62;
+      .marker-block {
+        background: #52596C;
+      }
       .task-block {
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
         filter: alpha(opacity=50);

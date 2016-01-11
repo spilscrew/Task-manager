@@ -159,4 +159,3 @@ var editTask = {
     }
 }
 editTask.init();
-console.log(localStorage);

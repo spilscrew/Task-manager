@@ -147,36 +147,43 @@ var toDoList = {
             }
         }
     },
-    taskDisplaying: function (clear,category,edit) {
+    taskDisplaying: function (clear,category,edit,search) {
         var tasksTable = document.getElementById("tasksTable");
         if (clear == true) {
             tasksTable.innerHTML = "";
         }
-        for (var q = 0; q < localStorage.length; q++) {
-            var localStorageObj = localStorage.getItem(localStorage.key(q));
-            localStorageObj = JSON.parse(localStorageObj);
-            if (category == "" || category == "archive") {
-                toDoList.displayActivate(localStorageObj);
-                catFilterArray = document.getElementsByClassName("cat-button");
-                for (var u = 0; u < catFilterArray.length; u++) {
-                    catFilterArray[u].classList.remove("active");
-                }
-                var categoryButtonClassSwitch = document.getElementById("archive");
-                categoryButtonClassSwitch.classList.add("active");
-                if (edit == "edit") {
-                    editTask.init();
-                }
+        if (search != undefined) {
+            toDoList.displayActivate(search);
+            if (edit == "edit") {
+                editTask.init();
             }
-            if (localStorageObj.category == category) {
-                toDoList.displayActivate(localStorageObj);
-                var catFilterArray = document.getElementsByClassName("cat-button");
-                for (var u = 0; u < catFilterArray.length; u++) {
-                    catFilterArray[u].classList.remove("active");
+        } else {
+            for (var q = 0; q < localStorage.length; q++) {
+                var localStorageObj = localStorage.getItem(localStorage.key(q));
+                localStorageObj = JSON.parse(localStorageObj);
+                if (category == "" || category == "archive") {
+                    toDoList.displayActivate(localStorageObj);
+                    catFilterArray = document.getElementsByClassName("cat-button");
+                    for (var u = 0; u < catFilterArray.length; u++) {
+                        catFilterArray[u].classList.remove("active");
+                    }
+                    var categoryButtonClassSwitch = document.getElementById("archive");
+                    categoryButtonClassSwitch.classList.add("active");
+                    if (edit == "edit") {
+                        editTask.init();
+                    }
                 }
-                categoryButtonClassSwitch = document.getElementById(category);
-                categoryButtonClassSwitch.classList.add("active");
-                if (edit == "edit") {
-                    editTask.init();
+                if (localStorageObj.category == category) {
+                    toDoList.displayActivate(localStorageObj);
+                    var catFilterArray = document.getElementsByClassName("cat-button");
+                    for (var u = 0; u < catFilterArray.length; u++) {
+                        catFilterArray[u].classList.remove("active");
+                    }
+                    categoryButtonClassSwitch = document.getElementById(category);
+                    categoryButtonClassSwitch.classList.add("active");
+                    if (edit == "edit") {
+                        editTask.init();
+                    }
                 }
             }
         }
