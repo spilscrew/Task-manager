@@ -32,6 +32,15 @@ var activateSections = {
         if (setId == "addTask") {
             var addTaskButton = document.querySelector('.add-task');
             addTaskButton.classList.toggle('active');
+            var currentCat = document.getElementsByClassName("cat-button");
+            for (var f = 0; f < currentCat.length; f++) {
+                var currentCatClasses = currentCat[f].classList
+                for (var t = 0; t < currentCatClasses.length; t++) {
+                    if (currentCatClasses[t] == "active") {
+                        document.getElementById(currentCat[f].id).classList.add("active");
+                    }
+                }
+            }
             //if (addTaskButton.classList.contains("active")) {
             //    setTimeout (function () {
             //        document.querySelector('.add-task').style.overflow = "visible";

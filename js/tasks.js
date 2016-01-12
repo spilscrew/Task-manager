@@ -1,5 +1,6 @@
 $(".jq-calendar").datepicker({
         dateFormat: "dd.mm.yy",
+        currentDate: $(".set-date-input").val($.datepicker.formatDate('dd.mm.yy', new Date())),
         onSelect: function(date){
             $(".set-date-input").val(date);
             $("#newDate").addClass("active");
