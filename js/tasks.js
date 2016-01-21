@@ -19,6 +19,7 @@ var toDoList = {
         addToStorage: function (category) {
             localStorage.setItem("taskId"+localStorage.length, JSON.stringify(toDoList.writeRecord));
             toDoList.taskDisplaying(true,category,"edit");
+            $(".jq-calendar").datepicker($(".set-date-input").val($.datepicker.formatDate('dd.mm.yy', new Date())));
             toDoList.writeRecord.id = "";
             toDoList.writeRecord.title = "";
             toDoList.writeRecord.category = "";
@@ -44,6 +45,7 @@ var toDoList = {
         },
         selectCategory: function () {
             var catArray = document.getElementsByClassName("newTaskCat");
+            var catButtonArray = document.getElementsByClassName("cat-button");
             var colorMarker = document.querySelector(".new-task-category-marker i");
             for (var i = 0; i < catArray.length; i++) {
                 catArray[i].onclick = function () {
@@ -55,6 +57,18 @@ var toDoList = {
                         catArray[r].classList.remove("active");
                     }
                     this.classList.toggle('active');
+
+                    for (var j = 0; j < catButtonArray.length; j++) {
+                        if (catButtonArray[j].classList.contains("active")) {
+                            catButtonArray[j].classList.remove("active");
+                        }
+                        if (catButtonArray[j].id == getCatColor) {
+                            catButtonArray[j].classList.add("active");
+                        }
+                    }
+
+                    toDoList.taskDisplaying(true,getCatColor,"edit");
+
                     toDoList.writeRecord.category = "";
                     toDoList.writeRecord.category = getCatColor;
                 }
@@ -106,9 +120,9 @@ var toDoList = {
             checkStatus3 = true;
         }
         if (checkStatus1 && checkStatus2 && checkStatus3) {
-            document.querySelector(".new-task-name").value = "";
-            document.querySelector("."+record.category+".newTaskCat").classList.remove("active");
-            document.querySelector(".new-task-category-marker i").classList.remove(record.category);
+            //document.querySelector(".new-task-name").value = "";
+            //document.querySelector("."+record.category+".newTaskCat").classList.remove("active");
+            //document.querySelector(".new-task-category-marker i").classList.remove(record.category);
 
             newTaskTitleError = document.querySelector(".new-task-name");
             newTaskTitleError.classList.remove("error");
@@ -121,6 +135,7 @@ var toDoList = {
             document.querySelector("#addTaskFavourite").classList.remove("active");
 
             toDoList.writeRecord.addToStorage(record.category);
+            toDoList.categoryFilter();
         }
     },
     addTaskButtonClick: document.getElementById("addTaskButton").onclick = function () {
@@ -136,6 +151,21 @@ var toDoList = {
     categoryFilter: function () {
         var catFilterArray = document.getElementsByClassName("cat-button");
         for (var i = 0; i < catFilterArray.length; i++) {
+            if (catFilterArray[i].classList.contains("cat-archive") && catFilterArray[i].classList.contains("active")) {
+                var catArray = document.getElementsByClassName("newTaskCat");
+                var colorMarker = document.querySelector(".new-task-category-marker i");
+                catArray[0].classList.add("active");
+                colorMarker.classList.add(catArray[0].classList[0]);
+                toDoList.writeRecord.category = "";
+                toDoList.writeRecord.category = catArray[0].classList[0];
+            }
+            var catArray = document.getElementsByClassName("newTaskCat");
+            for (var g = 0; g < catArray.length; g++ ) {
+                if (catArray[g].classList.contains("active")) {
+                    toDoList.writeRecord.category = "";
+                    toDoList.writeRecord.category = catArray[g].classList[0];
+                }
+            }
             catFilterArray[i].onclick = function () {
                 var catFilterArray = document.getElementsByClassName("cat-button");
                 for (var u = 0; u < catFilterArray.length; u++){
@@ -145,6 +175,29 @@ var toDoList = {
                 var currentCategory = this.getAttribute("id");
                 toDoList.taskDisplaying(true,currentCategory);
                 editTask.init();
+
+                var catArray = document.getElementsByClassName("newTaskCat");
+                var colorMarker = document.querySelector(".new-task-category-marker i");
+
+                if (this.classList.contains("cat-archive")) {
+                    var catArray = document.getElementsByClassName("newTaskCat");
+                    var colorMarker = document.querySelector(".new-task-category-marker i");
+                    catArray[0].classList.add("active");
+                    colorMarker.classList.add(catArray[0].classList[0]);
+                    toDoList.writeRecord.category = "";
+                    toDoList.writeRecord.category = catArray[0].classList[0];
+                } else {
+                    for (var b = 0; b < catArray.length; b++) {
+                        catArray[b].classList.remove("active");
+                        if (catArray[b].classList.contains(currentCategory)) {
+                            catArray[b].classList.add("active");
+                            colorMarker.className = "fa fa-circle";
+                            colorMarker.classList.add(catArray[b].classList[0]);
+                            toDoList.writeRecord.category = "";
+                            toDoList.writeRecord.category = catArray[b].classList[0];
+                        }
+                    }
+                }
             }
         }
     },
@@ -155,6 +208,15 @@ var toDoList = {
         }
         if (search != undefined) {
             toDoList.displayActivate(search);
+            var catButtonArray = document.getElementsByClassName("cat-button");
+            for (var j = 0; j < catButtonArray.length; j++) {
+                if (catButtonArray[j].classList.contains("active")) {
+                    catButtonArray[j].classList.remove("active");
+                }
+                if (catButtonArray[j].id == "archive") {
+                    catButtonArray[j].classList.add("active");
+                }
+            }
             if (edit == "edit") {
                 editTask.init();
             }
@@ -164,24 +226,24 @@ var toDoList = {
                 localStorageObj = JSON.parse(localStorageObj);
                 if (category == "" || category == "archive") {
                     toDoList.displayActivate(localStorageObj);
-                    catFilterArray = document.getElementsByClassName("cat-button");
-                    for (var u = 0; u < catFilterArray.length; u++) {
-                        catFilterArray[u].classList.remove("active");
-                    }
-                    var categoryButtonClassSwitch = document.getElementById("archive");
-                    categoryButtonClassSwitch.classList.add("active");
+                    //catFilterArray = document.getElementsByClassName("cat-button");
+                    //for (var u = 0; u < catFilterArray.length; u++) {
+                    //    catFilterArray[u].classList.remove("active");
+                    //}
+                    //var categoryButtonClassSwitch = document.getElementById("archive");
+                    //categoryButtonClassSwitch.classList.add("active");
                     if (edit == "edit") {
                         editTask.init();
                     }
                 }
                 if (localStorageObj.category == category) {
                     toDoList.displayActivate(localStorageObj);
-                    var catFilterArray = document.getElementsByClassName("cat-button");
-                    for (var u = 0; u < catFilterArray.length; u++) {
-                        catFilterArray[u].classList.remove("active");
-                    }
-                    categoryButtonClassSwitch = document.getElementById(category);
-                    categoryButtonClassSwitch.classList.add("active");
+                    //var catFilterArray = document.getElementsByClassName("cat-button");
+                    //for (var u = 0; u < catFilterArray.length; u++) {
+                    //    catFilterArray[u].classList.remove("active");
+                    //}
+                    //categoryButtonClassSwitch = document.getElementById(category);
+                    //categoryButtonClassSwitch.classList.add("active");
                     if (edit == "edit") {
                         editTask.init();
                     }
