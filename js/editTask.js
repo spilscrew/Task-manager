@@ -143,7 +143,7 @@ var editTask = {
                     '<button id="edit-category-button" class="option-button"><i class="fa fa-circle ' + localStorageObj.category + '"></i><span>Category</span></button>' +
                     '</div>' +
                     '<div class="option">' +
-                    '<button id="saveEdit" class="option-button"><i class="fa fa-pencil"></i><span>Edit</span></button>' +
+                    '<button id="saveEdit" class="option-button"><i class="fa fa-pencil"></i><span>Save</span></button>' +
                     '</div>' +
                     '</div>'
                 );

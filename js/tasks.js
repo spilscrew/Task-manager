@@ -28,12 +28,29 @@ var toDoList = {
             toDoList.writeRecord.finished = "";
         }
     },
-    //doneTask: function (doneTaskId) {
-    //    var doneTask = localStorage.getItem(localStorage.key(doneTaskId));
-    //    doneTask = JSON.parse(doneTask);
-    //    doneTask.finished = true;
-    //    console.log(doneTask);
-    //},
+    doneTask: function () {
+        var labelsArray = document.getElementsByClassName("done-label");
+        for (var l = 0; l < labelsArray.length; l++) {
+            labelsArray[l].onclick = function () {
+                var doneTask = localStorage.getItem(this.classList[1]);
+                doneTask = JSON.parse(doneTask);
+                if (doneTask.finished === "checked") {
+                    doneTask.finished = "";
+                } else {
+                    doneTask.finished = "checked";
+                }
+                localStorage.setItem(doneTask.id,JSON.stringify(doneTask));
+                var activeCategory = document.getElementsByClassName("cat-button");
+                for (var q = 0; q < activeCategory.length; q++) {
+                    if (activeCategory[q].classList.contains("active")) {
+                        activeCategory = activeCategory[q].id;
+                        break;
+                    }
+                }
+                toDoList.taskDisplaying(true,activeCategory,"edit");
+            }
+        }
+    },
     addTaskRecord: {
         setId: function () {
             toDoList.writeRecord.id = "taskId" + localStorage.length++;
@@ -120,7 +137,7 @@ var toDoList = {
             checkStatus3 = true;
         }
         if (checkStatus1 && checkStatus2 && checkStatus3) {
-            //document.querySelector(".new-task-name").value = "";
+            document.querySelector(".new-task-name").value = "";
             //document.querySelector("."+record.category+".newTaskCat").classList.remove("active");
             //document.querySelector(".new-task-category-marker i").classList.remove(record.category);
 
@@ -253,13 +270,15 @@ var toDoList = {
         if (document.getElementById("tasksTable").innerHTML === "") {
             document.getElementById("tasksTable").innerHTML = "<div class='empty-text'><span>THIS CATEGORY<BR>IS EMPTY</span></div>";
         }
+        this.doneTask();
     },
     displayActivate: function (item) {
+        var tasksTable = document.getElementById("tasksTable");
         tasksTable.insertAdjacentHTML((item.finished == "")? 'afterbegin':'beforeend', '' +
             '<div id="' + item.id + '" class="task full-width ' + item.category + ' ' + item.finished + '">' +
             '<div class="marker-block">' +
             '<input id="' + item.id + 'Check" type="checkbox" ' + item.finished + '> ' +
-            '<label onclick="return false" class="done-label" for="' + item.id + 'Check"> ' +
+            '<label class="done-label '+ item.id  +'" for="' + item.id + 'Check"> ' +
             '<i class="fa fa-check-circle"></i> ' +
             '</label> ' +
             '</div> ' +
@@ -284,6 +303,7 @@ var toDoList = {
         this.addTaskRecord.selectFavourite();
         this.taskDisplaying(true,"");
         this.categoryFilter();
+        this.doneTask();
     }
 }
 toDoList.init();
